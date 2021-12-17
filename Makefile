@@ -1,18 +1,18 @@
-CC = g++
+CXX = g++
 CFLAGS = -I. -Wall -Wextra -Werror -g -pedantic -std=c++11 -fbounds-check -O2
-DEPS = utils.h
-OBJ =
-MAIN =  main.o
+DEPS = utils.h CoffeeMachine.h BeanGrinder.h BeanHopper.h CupReceptacle.h HeatSource.h WaterSource.h
+OBJ = CoffeeMachine.o BeanGrinder.o BeanHopper.o CupReceptacle.o HeatSource.o WaterSource.o
+MAIN = main.o
 TEST = test.o
 
-%.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+%.o: %.cpp $(OBJ)
+	$(CXX) -c -o $@ $< $(CFLAGS)
 
 app: $(MAIN) $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CXX) -o $@ $^ $(CFLAGS)
 
 apptest: $(TEST) $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CXX) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 clean:
